@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/game_level_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="第*关"
+        android:textColor="#444444" />
+
+    <TextView
+        android:id="@+id/game_past_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="50dp"
+        android:text="花费时间"
+        android:textColor="#444444" />
+</LinearLayout>
