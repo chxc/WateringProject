@@ -1,5 +1,6 @@
 package com.xnsj.watering;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -12,8 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<GameLevelBean> listGameLevel=new ArrayList<>();
     private ListView main_list_view;
-
-
+    private Activity activity;
     /*
     * 1、每个龙头可以喷上下左右各一个  再加上一个（n）
     * 2、等级乘以x(某个级别的数量)
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         main_list_view=(ListView) findViewById(R.id.main_list_view);
-
+        activity=this;
         initData();
         initView();
     }
