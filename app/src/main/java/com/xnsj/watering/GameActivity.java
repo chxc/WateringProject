@@ -17,17 +17,31 @@ public class GameActivity extends AppCompatActivity {
 
     private List<TreeBean> listTree=new ArrayList<>();
     private GridView game_tree_grid_view;
+    private int level;//第多少关
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         game_tree_grid_view= findViewById(R.id.game_tree_grid_view);
         TextView game_tree_start= findViewById(R.id.game_tree_start);
-        for (int i = 0; i < 100; i++) {
+        level=getIntent().getExtras().getInt("level");
+        switch (level%3) {
+            case 0:
+                game_tree_grid_view.setNumColumns(5);
+                break;
+            case 1:
+                game_tree_grid_view.setNumColumns(7);
+                break;
+            case 2:
+                game_tree_grid_view.setNumColumns(9);
+                break;
+        }
+
+        for (int i = 0; i < level*5; i++) {
             TreeBean treeBean=new TreeBean();
             if(i%2==0){//是树
                 treeBean.setDotType(TreeBean.DotType.TREE);
-                if(i%5!=0)
+                if(i%(5+level)!=0)
                     treeBean.setExist(true);
                 //treeBean.setLinePosition();
             }else {//是水龙头

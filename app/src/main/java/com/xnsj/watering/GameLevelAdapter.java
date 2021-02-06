@@ -56,7 +56,7 @@ public class GameLevelAdapter extends BaseAdapter {
                 Intent intent=new Intent(context,GameActivity.class);
                 int position= (int) ((ViewGroup)view).getChildAt(1).getTag();
                 Bundle bundle=new Bundle();
-                bundle.putInt("position",position);
+                bundle.putInt("level",position+1);
                 intent.putExtras(bundle);
                 ((Activity)context).startActivity(intent);
             }
