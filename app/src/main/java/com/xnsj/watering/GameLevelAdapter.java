@@ -1,6 +1,9 @@
 package com.xnsj.watering;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +49,18 @@ public class GameLevelAdapter extends BaseAdapter {
             gameLevelHolder= (GameLevelHolder) view.getTag();
         gameLevelHolder.game_level_state.setText("第"+list.get(position).getLevel()+"关");
         gameLevelHolder.game_past_time.setText("花费时间"+list.get(position).getPassTime());
+        gameLevelHolder.game_past_time.setTag(position);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context,GameActivity.class);
+                int position= (int) ((ViewGroup)view).getChildAt(1).getTag();
+                Bundle bundle=new Bundle();
+                bundle.putInt("position",position);
+                intent.putExtras(bundle);
+                ((Activity)context).startActivity(intent);
+            }
+        });
         return view;
     }
 

@@ -4,12 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameActivity">
+    tools:context=".GameActivity"
+    android:orientation="vertical"
+    >
 
     <GridView
-        android:id="@+id/game_"
+        android:id="@+id/game_tree_grid_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:numColumns="5"
+        android:verticalSpacing="10dp"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/game_tree_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开始浇水"
+        android:padding="10dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#bbacdf"
+        android:layout_margin="10dp"
         />
 
 </LinearLayout>

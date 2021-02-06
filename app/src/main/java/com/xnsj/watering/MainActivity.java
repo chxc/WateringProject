@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
             GameLevelBean gameLevelBean=new GameLevelBean(i,null);
             listGameLevel.add(gameLevelBean);
         }
+        GameLevelAdapter gameLevelAdapter=new GameLevelAdapter(activity,listGameLevel);
+        main_list_view.setAdapter(gameLevelAdapter);
     }
 
     //初始化视图
