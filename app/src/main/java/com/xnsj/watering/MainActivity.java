@@ -1,7 +1,9 @@
 package com.xnsj.watering;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -9,7 +11,7 @@ import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private List<GameLevelBean> listGameLevel=new ArrayList<>();
     private ListView main_list_view;
@@ -19,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     * 2、等级乘以x(某个级别的数量)
     * 3、等级可以剩余金币  剩下的个数
     * 4、钱可以买喷头的种类
-    *
     * --------  --------
     * 随机分布，用花费的和最佳的水龙头数量相比，来给打分
     * 一行树木   一行水龙头
@@ -48,5 +49,15 @@ public class MainActivity extends AppCompatActivity {
     //初始化视图
     private void initView() {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.main_tip://跳转到提示页面
+                Intent intent=new Intent(this,TipActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }
