@@ -23,7 +23,8 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("create table " + "game_level_info ( " +
                 "_id integer PRIMARY KEY AUTOINCREMENT," +
                 "level integer unique, " + //关卡级别
-                "pass_time long" +//通过时间
+                "pass_time long ," +//通过时间
+                "taps_num integer" +//使用水龙头数量
                 ")");
     }
 

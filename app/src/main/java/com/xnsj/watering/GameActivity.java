@@ -91,7 +91,7 @@ public class GameActivity extends AppCompatActivity {
                         GameLevelBean gameLevelBean=DBDao.getInstance(context).queryLevel(level);
                         if(gameLevelBean!=null){
                             if(gameLevelBean.getPassTime()==0||submitTime<gameLevelBean.getPassTime())
-                                DBDao.getInstance(context).updateTime(level,gameLevelBean.getPassTime());
+                                DBDao.getInstance(context).updateTime(level,gameLevelBean.getPassTime(),gameLevelBean.getTaps_num());
                         }
                         return;
                     }

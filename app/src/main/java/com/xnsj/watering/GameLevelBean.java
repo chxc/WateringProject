@@ -5,10 +5,20 @@ package com.xnsj.watering;
 public class GameLevelBean {
     private int level;
     private long passTime;//花费的时间   默认值为0   当为0的时为最大时间
+    private int taps_num;//水龙头数量
 
-    public GameLevelBean(int level, long passTime) {
+    public GameLevelBean(int level, long passTime,int taps_num) {
         this.level = level;
         this.passTime = passTime;
+        this.taps_num = taps_num;
+    }
+
+    public int getTaps_num() {
+        return taps_num;
+    }
+
+    public void setTaps_num(int taps_num) {
+        this.taps_num = taps_num;
     }
 
     public int getLevel() {

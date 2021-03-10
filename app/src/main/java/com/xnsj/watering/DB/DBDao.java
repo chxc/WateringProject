@@ -48,10 +48,10 @@ public class DBDao {
         List<GameLevelBean> list = new ArrayList<>();
         Cursor cursor = null;
         try {
-            String sql = "select level, pass_time " + "  from game_level_info ";
+            String sql = "select level, pass_time,taps_num " + "  from game_level_info ";
             cursor = database.rawQuery(sql, new String[]{});
             while (cursor.moveToNext()) {
-                GameLevelBean gameLevelBean = new GameLevelBean(cursor.getInt(0), cursor.getLong(1));
+                GameLevelBean gameLevelBean = new GameLevelBean(cursor.getInt(0), cursor.getLong(1), cursor.getInt(2));
                 YCStringTool.logi(DBDao.class, "查到的数据库内容" + gameLevelBean.toString());
                 list.add(gameLevelBean);
             }
@@ -74,8 +74,8 @@ public class DBDao {
     public synchronized void insertInfo(GameLevelBean info) {
         SQLiteDatabase database = getConnection();
         try {
-            String sql = "insert into game_level_info (level,pass_time)  " + "values (?,?)";
-            Object[] bindArgs = {info.getLevel(), info.getPassTime()};
+            String sql = "insert into game_level_info (level,pass_time,taps_num)  " + "values (?,?,?)";
+            Object[] bindArgs = {info.getLevel(), info.getPassTime(),info.getTaps_num()};
             database.execSQL(sql, bindArgs);
         } catch (SQLiteConstraintException e) {
             database.close();
@@ -110,11 +110,11 @@ public class DBDao {
     /**
      * 修改特定关卡数据
      */
-    public void updateTime(int level, long pass_time) {
+    public void updateTime(int level, long pass_time,int taps_num) {
         SQLiteDatabase database = getConnection();
         try {
-            String sql = "update game_level_info set pass_time=? where level=?";
-            Object[] bindArgs = {pass_time, level};
+            String sql = "update game_level_info set pass_time=?,taps_num=? where level=?";
+            Object[] bindArgs = {pass_time, level,taps_num};
             database.execSQL(sql, bindArgs);
         } catch (Exception e) {
             e.printStackTrace();
@@ -137,7 +137,7 @@ public class DBDao {
             String sql = "select count(*)   from game_level_info where level=?";
             cursor = database.rawQuery(sql, new String[]{level + ""});
             if (cursor.moveToFirst()) {
-                gameLevelBean =new GameLevelBean(level, cursor.getInt(0));
+                gameLevelBean =new GameLevelBean(level, cursor.getLong(1),cursor.getInt(2));
             }
         } catch (Exception e) {
             e.printStackTrace();

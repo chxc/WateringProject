@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         listGameLevel.addAll(DBDao.getInstance(this).getAllInfos());
         if (listGameLevel.size() <= 0)
             for (int i = 0; i < 40; i++) {
-                GameLevelBean gameLevelBean = new GameLevelBean(i, 0);
+                GameLevelBean gameLevelBean = new GameLevelBean(i, 0,0);
                 listGameLevel.add(gameLevelBean);
                 DBDao.getInstance(this).insertInfo(gameLevelBean);
             }
