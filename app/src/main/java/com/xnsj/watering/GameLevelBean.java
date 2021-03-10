@@ -4,9 +4,9 @@ package com.xnsj.watering;
  * */
 public class GameLevelBean {
     private int level;
-    private String passTime;//花费的时间
+    private long passTime;//花费的时间   默认值为0   当为0的时为最大时间
 
-    public GameLevelBean(int level, String passTime) {
+    public GameLevelBean(int level, long passTime) {
         this.level = level;
         this.passTime = passTime;
     }
@@ -19,11 +19,19 @@ public class GameLevelBean {
         this.level = level;
     }
 
-    public String getPassTime() {
+    public long getPassTime() {
         return passTime;
     }
 
-    public void setPassTime(String passTime) {
+    public void setPassTime(long passTime) {
         this.passTime = passTime;
+    }
+
+    @Override
+    public String toString() {
+        return "GameLevelBean{" +
+                "level=" + level +
+                ", passTime=" + passTime +
+                '}';
     }
 }

@@ -48,7 +48,10 @@ public class GameLevelAdapter extends BaseAdapter {
         }else
             gameLevelHolder= (GameLevelHolder) view.getTag();
         gameLevelHolder.game_level_state.setText("第"+list.get(position).getLevel()+"关");
-        gameLevelHolder.game_past_time.setText("花费时间"+list.get(position).getPassTime());
+        if(list.get(position).getPassTime()==0){
+            gameLevelHolder.game_past_time.setText("未完成");
+        }else
+            gameLevelHolder.game_past_time.setText("花费时间"+list.get(position).getPassTime());
         gameLevelHolder.game_past_time.setTag(position);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
