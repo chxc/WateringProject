@@ -42,6 +42,7 @@ public class GameLevelBean {
         return "GameLevelBean{" +
                 "level=" + level +
                 ", passTime=" + passTime +
+                ", taps_num=" + taps_num +
                 '}';
     }
 }

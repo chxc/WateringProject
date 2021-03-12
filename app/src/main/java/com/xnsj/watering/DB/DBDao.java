@@ -110,11 +110,11 @@ public class DBDao {
     /**
      * 修改特定关卡数据
      */
-    public void updateTime(int level, long pass_time,int taps_num) {
+    public void updateInfo(int level, long pass_time,int taps_num) {
         SQLiteDatabase database = getConnection();
         try {
             String sql = "update game_level_info set pass_time=?,taps_num=? where level=?";
-            Object[] bindArgs = {pass_time, level,taps_num};
+            Object[] bindArgs = {pass_time,taps_num, level};
             database.execSQL(sql, bindArgs);
         } catch (Exception e) {
             e.printStackTrace();
@@ -134,13 +134,15 @@ public class DBDao {
         GameLevelBean gameLevelBean=null;
         Cursor cursor = null;
         try {
-            String sql = "select count(*)   from game_level_info where level=?";
+            String sql = "select pass_time,taps_num from game_level_info where level=?";
             cursor = database.rawQuery(sql, new String[]{level + ""});
             if (cursor.moveToFirst()) {
-                gameLevelBean =new GameLevelBean(level, cursor.getLong(1),cursor.getInt(2));
+                gameLevelBean =new GameLevelBean(level, cursor.getLong(0),cursor.getInt(1));
+                YCStringTool.logi(this.getClass(),"查询到的指定数据  "+gameLevelBean.toString());
             }
         } catch (Exception e) {
             e.printStackTrace();
+            YCStringTool.logi(this.getClass(),"查询出错"+e.toString());
         } finally {
             if (null != database) {
                 database.close();

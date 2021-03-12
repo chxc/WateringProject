@@ -23,7 +23,7 @@ public class GameActivity extends AppCompatActivity {
     private List<TreeBean> listTree = new ArrayList<>();
     private GridView game_tree_grid_view;
     private int level;//第多少关
-    private long currentTime;//当前时间
+    private long startTime;//开始时间
     private long submitTime;//提交时间
     private Context context;
 
@@ -58,7 +58,7 @@ public class GameActivity extends AppCompatActivity {
         }
         GameAdapter gameAdapter = new GameAdapter(this, listTree);
         game_tree_grid_view.setAdapter(gameAdapter);
-        currentTime = System.currentTimeMillis();
+        startTime = System.currentTimeMillis();
         YCStringTool.logi(this.getClass(), "当前时间");
         game_tree_start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +67,7 @@ public class GameActivity extends AppCompatActivity {
                  * 规则 ：如果不是最后一排  那么必须只能有一个水龙头
                  *
                  * */
-                int num = 0;
+                int deathTree=0;
                 for (int i = 0; i < listTree.size(); i++) {
                     boolean isPass = false;
                     if (i + 1 < listTree.size()) {
@@ -83,10 +83,9 @@ public class GameActivity extends AppCompatActivity {
                             isPass = true;
                     }
                     if (i + 5 < listTree.size()) {
-                        if (listTree.get(i + 1).getIsExist())//下一排
+                        if (listTree.get(i + 5).getIsExist())//下一排
                             isPass = true;
                     }
-
 
                     if (isPass) {//闯关成功
 
@@ -95,13 +94,30 @@ public class GameActivity extends AppCompatActivity {
                         (((LinearLayout) game_tree_grid_view.getChildAt(i)).getChildAt(0)).setBackground(getResources().getDrawable(R.mipmap.icon_death));
                         //((ImageView)game_tree_grid_view.getChildAt(i)).setSelected(false);
                         Toast.makeText(GameActivity.this, "闯关失败", Toast.LENGTH_SHORT).show();
+                        game_tree_start.setEnabled(false);//设置不可点击
+                        YCStringTool.logi(this.getClass(),"闯关失败");
+                        deathTree++;
                     }
                 }
-                submitTime = System.currentTimeMillis();//更新时间
+                if(deathTree>0){
+                    return;
+                }
+                submitTime =System.currentTimeMillis()- startTime;//更新时间
                 GameLevelBean gameLevelBean = DBDao.getInstance(context).queryLevel(level);
                 if (gameLevelBean != null) {
-                    if (gameLevelBean.getPassTime() == 0 || submitTime < gameLevelBean.getPassTime())
-                        DBDao.getInstance(context).updateTime(level, gameLevelBean.getPassTime(), gameLevelBean.getTaps_num());
+                    YCStringTool.logi(this.getClass(),"水龙    头  打开");
+                    if (gameLevelBean.getPassTime() == 0 || submitTime < gameLevelBean.getPassTime()) {
+                        int num=0;
+                        for (int i = 0; i < listTree.size(); i++) {
+                            if(listTree.get(i).getDotType()== TreeBean.DotType.FAUCET){//水龙头
+                                if(listTree.get(i).getIsExist()){//水龙头打开了
+                                    num++;
+                                    YCStringTool.logi(this.getClass(),"水龙头打开");
+                                }
+                            }
+                        }
+                        DBDao.getInstance(context).updateInfo(level, submitTime, num);
+                    }
                 }
                 Toast.makeText(GameActivity.this, "闯关成功", Toast.LENGTH_SHORT).show();
             }
