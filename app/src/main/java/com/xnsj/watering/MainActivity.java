@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private List<GameLevelBean> listGameLevel = new ArrayList<>();
     private ListView main_list_view;
     private Activity activity;
-
     /*
      * 1、每个龙头可以喷上下左右各一个  再加上一个（n）
      * 2、等级乘以x(某个级别的数量)

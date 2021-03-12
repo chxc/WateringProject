@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:padding="10dp">
+    android:padding="10dp"
+    >
 
     <TextView
         android:id="@+id/game_level_state"
@@ -14,10 +15,21 @@
         android:textColor="#444444" />
 
     <TextView
+        android:id="@+id/game_past_user_tab_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:paddingLeft="20dp"
+        android:drawableLeft="@mipmap/icon_faucet_open"
+        android:drawablePadding="5dp"
+        />
+
+    <TextView
         android:id="@+id/game_past_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="50dp"
+        android:paddingLeft="20dp"
         android:text="花费时间"
         android:textColor="#444444" />
+
 </LinearLayout>

@@ -52,12 +52,19 @@ public class GameLevelAdapter extends BaseAdapter {
             gameLevelHolder.game_past_time.setText("未完成");
         }else
             gameLevelHolder.game_past_time.setText("花费时间"+list.get(position).getPassTime());
+        if(list.get(position).getTaps_num()==0){
+            gameLevelHolder.game_past_user_tab_num.setText("");
+            gameLevelHolder.game_past_user_tab_num.setVisibility(View.GONE);
+        }else {
+            gameLevelHolder.game_past_user_tab_num.setVisibility(View.VISIBLE);
+            gameLevelHolder.game_past_user_tab_num.setText(list.get(position).getTaps_num()+"");
+        }
         gameLevelHolder.game_past_time.setTag(position);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context,GameActivity.class);
-                int position= (int) ((ViewGroup)view).getChildAt(1).getTag();
+                int position= (int) ((ViewGroup)view).getChildAt(2).getTag();
                 Bundle bundle=new Bundle();
                 bundle.putInt("level",position+1);
                 intent.putExtras(bundle);
@@ -70,6 +77,7 @@ public class GameLevelAdapter extends BaseAdapter {
     protected static class GameLevelHolder {
         private View view;
         private TextView game_level_state;
+        private TextView game_past_user_tab_num;
         private TextView game_past_time;
 
         public GameLevelHolder(View view) {
@@ -80,6 +88,7 @@ public class GameLevelAdapter extends BaseAdapter {
         //初始化视图
         private void initView() {
             game_level_state = view.findViewById(R.id.game_level_state);
+            game_past_user_tab_num = view.findViewById(R.id.game_past_user_tab_num);
             game_past_time = view.findViewById(R.id.game_past_time);
         }
     }
