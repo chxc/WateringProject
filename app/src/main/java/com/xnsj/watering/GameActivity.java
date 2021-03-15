@@ -71,10 +71,12 @@ public class GameActivity extends AppCompatActivity {
                 for (int i = 0; i < listTree.size(); i++) {
                     boolean isPass = false;
                     if (i + 1 < listTree.size()) {
+                        if(i+1%5!=0)//不是每一排的第一个
                         if (listTree.get(i + 1).getIsExist())//后一个
                             isPass = true;//查看后一个
                     }
                     if (i > 0) {//不是第一个
+                        if(i-1%5!=4)//不是每一排的最后一个
                         if (listTree.get(i - 1).getIsExist())//前一个
                             isPass = true;//查看后一个
                     }
@@ -93,13 +95,13 @@ public class GameActivity extends AppCompatActivity {
                         listTree.get(i).setExist(false);//设置树死亡了
                         (((LinearLayout) game_tree_grid_view.getChildAt(i)).getChildAt(0)).setBackground(getResources().getDrawable(R.mipmap.icon_death));
                         //((ImageView)game_tree_grid_view.getChildAt(i)).setSelected(false);
-                        Toast.makeText(GameActivity.this, "闯关失败", Toast.LENGTH_SHORT).show();
                         game_tree_start.setEnabled(false);//设置不可点击
                         YCStringTool.logi(this.getClass(),"闯关失败");
                         deathTree++;
                     }
                 }
                 if(deathTree>0){
+                    Toast.makeText(GameActivity.this, "闯关失败", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 submitTime =System.currentTimeMillis()- startTime;//更新时间

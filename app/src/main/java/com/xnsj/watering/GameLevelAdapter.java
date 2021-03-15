@@ -18,7 +18,9 @@ public class GameLevelAdapter extends BaseAdapter {
     private Context context;
     private List<GameLevelBean> list;
 
-    public GameLevelAdapter(Context context, List<GameLevelBean> list) {
+    public
+
+    GameLevelAdapter(Context context, List<GameLevelBean> list) {
         this.context = context;
         this.list = list;
     }
@@ -51,7 +53,7 @@ public class GameLevelAdapter extends BaseAdapter {
         if(list.get(position).getPassTime()==0){
             gameLevelHolder.game_past_time.setText("未完成");
         }else
-            gameLevelHolder.game_past_time.setText("花费时间"+list.get(position).getPassTime());
+            gameLevelHolder.game_past_time.setText("花费时间"+YCStringTool.formatS(list.get(position).getPassTime()));
         if(list.get(position).getTaps_num()==0){
             gameLevelHolder.game_past_user_tab_num.setText("");
             gameLevelHolder.game_past_user_tab_num.setVisibility(View.GONE);

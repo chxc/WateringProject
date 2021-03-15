@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ListView main_list_view;
     private Activity activity;
     private GameLevelAdapter gameLevelAdapter;
-
     /*
      * 1、每个龙头可以喷上下左右各一个  再加上一个（n）
      * 2、等级乘以x(某个级别的数量)
@@ -54,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         listGameLevel.clear();
         listGameLevel.addAll(DBDao.getInstance(this).getAllInfos());
         if (listGameLevel.size() <= 0)
-            for (int i = 0; i < 40; i++) {
+            for (int i = 1; i <= 5; i++) {
                 GameLevelBean gameLevelBean = new GameLevelBean(i, 0,0);
                 listGameLevel.add(gameLevelBean);
                 DBDao.getInstance(this).insertInfo(gameLevelBean);
