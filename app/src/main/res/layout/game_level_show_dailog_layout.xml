@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#fff"
+    android:padding="20dp"
+    android:layout_gravity="center"
+
+    >
+
+    <TextView
+        android:id="@+id/game_level_show_dialog_last_grade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="使用水龙头个数  上一次用时："
+        />
+    <TextView
+        android:id="@+id/game_level_show_dialog_newest_grade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="最新用时：使用水龙头个数"
+        />
+
+
+
+</LinearLayout>

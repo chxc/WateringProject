@@ -28,5 +28,16 @@
         android:background="#bbacdf"
         android:layout_margin="10dp"
         />
+    <TextView
+        android:id="@+id/game_next_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="下一关"
+        android:padding="10dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#bbacdf"
+        android:layout_margin="10dp"
+        android:visibility="gone"
+        />
 
 </LinearLayout>
